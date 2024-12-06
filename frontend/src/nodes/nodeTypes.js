@@ -27,5 +27,50 @@ export const NODE_TYPES = {
         defaultData: {
             text: '{{input}}'
         }
+    },
+    MESSAGE: {
+        type: 'message',
+        label: 'Message',
+        defaultData: {
+            platform: 'email',
+            template: '',
+            recipients: []
+        }
+    },
+    WEB_SCRAPER: {
+        type: 'webScraper',
+        label: 'Web Scraper',
+        defaultData: {
+            selector: '',
+            dataType: 'text',
+            pagination: false
+        }
+    },
+    IMAGE_PROCESSING: {
+        type: 'imageProcessing',
+        label: 'Image Processing',
+        defaultData: {
+            operation: 'resize',
+            quality: 100,
+            format: 'jpeg'
+        }
+    },
+    NOTIFICATION: {
+        type: 'notification',
+        label: 'Notification',
+        defaultData: {
+            template: 'default',
+            priority: 'normal',
+            title: ''
+        }
+    },
+    DATA_TRANSFORM: {
+        type: 'dataTransform',
+        label: 'Data Transform',
+        defaultData: {
+            inputFormat: 'JSON',
+            outputFormat: 'CSV',
+            schema: ''
+        }
     }
 };
