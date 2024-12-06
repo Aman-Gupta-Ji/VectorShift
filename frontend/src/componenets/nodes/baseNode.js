@@ -1,25 +1,17 @@
 // baseNode.js
 import { useState } from 'react';
 import { Handle, Position } from 'reactflow';
-
-const DefaultNodeContent = ({ label, children }) => (
-  <div>
-    <span>{label}</span>
-    {children}
-  </div>
-);
+import { styles, getVariantStyles } from './../../styling/styles';
 
 export const BaseNode = ({ 
   id,
   data,
   label,
+  type = 'default',
   initialState = {},
   inputs = [],
   outputs = [],
-  children,
-  className = '',
-  width = 200,
-  height = 80
+  children
 }) => {
   const [state, setState] = useState(initialState);
 
@@ -35,23 +27,20 @@ export const BaseNode = ({
   };
 
   return (
-    <div 
-      style={{
-        width,
-        height,
-        border: '1px solid black',
-        padding: '10px',
-        borderRadius: '4px'
-      }}
-      className={className}
-    >
-      {/* Input Handles */}
+    <div className={getVariantStyles(styles.baseNode, 'container', type)}>
+      <div className={getVariantStyles(styles.baseNode, 'header', type)}>
+        <span className={getVariantStyles(styles.baseNode, 'label', type)}>
+          {label}
+        </span>
+      </div>
+
       {inputs.map((input, index) => (
         <Handle
           key={`input-${input.id}`}
           type="target"
           position={Position.Left}
           id={`${id}-${input.id}`}
+          className={getVariantStyles(styles.baseNode, 'handle', type)}
           style={{
             top: `${((index + 1) * 100) / (inputs.length + 1)}%`,
             ...input.style
@@ -59,18 +48,17 @@ export const BaseNode = ({
         />
       ))}
 
-      {/* Content */}
-      <DefaultNodeContent label={label}>
+      <div className={styles.baseNode.content}>
         {children && children({ state, handleChange })}
-      </DefaultNodeContent>
+      </div>
 
-      {/* Output Handles */}
       {outputs.map((output, index) => (
         <Handle
           key={`output-${output.id}`}
           type="source"
           position={Position.Right}
           id={`${id}-${output.id}`}
+          className={getVariantStyles(styles.baseNode, 'handle', type)}
           style={{
             top: `${((index + 1) * 100) / (outputs.length + 1)}%`,
             ...output.style

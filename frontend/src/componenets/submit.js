@@ -1,10 +1,12 @@
 // submit.js
+import { styles } from './../styling/styles';
 
 export const SubmitButton = () => {
-
-    return (
-        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            <button type="submit">Submit</button>
-        </div>
-    );
-}
+  return (
+    <div className={styles.submit.container}>
+      <button type="submit" className={styles.submit.button}>
+        Submit
+      </button>
+    </div>
+  );
+};

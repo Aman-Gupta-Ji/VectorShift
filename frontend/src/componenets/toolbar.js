@@ -1,19 +1,23 @@
 // toolbar.js
 import { DraggableNode } from './draggableNode';
 import { NODE_TYPES } from './nodes';
+import { styles } from './../styling/styles';
 
 export const PipelineToolbar = () => {
-    return (
-        <div style={{ padding: '10px' }}>
-            <div style={{ marginTop: '20px', display: 'flex', flexWrap: 'wrap', gap: '10px' }}>
-                {Object.values(NODE_TYPES).map(({ type, label }) => (
-                    <DraggableNode 
-                        key={type}
-                        type={type}
-                        label={label}
-                    />
-                ))}
-            </div>
+  return (
+    <div className={styles.toolbar.container}>
+      <div className={styles.toolbar.wrapper}>
+        <h2 className={styles.toolbar.title}>Nodes</h2>
+        <div className={styles.toolbar.nodesContainer}>
+          {Object.values(NODE_TYPES).map(({ type, label }) => (
+            <DraggableNode 
+              key={type}
+              type={type}
+              label={label}
+            />
+          ))}
         </div>
-    );
+      </div>
+    </div>
+  );
 };
