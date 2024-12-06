@@ -1,34 +1,30 @@
 // llmNode.js
+import { BaseNode } from './baseNode';
+import PropTypes from 'prop-types';
 
-import { Handle, Position } from 'reactflow';
+export const LLMNode = ({ id, data = {} }) => {
+    return (
+        <BaseNode
+            id={id}
+            data={data}
+            label="LLM"
+            inputs={[
+                { id: 'system', style: { top: '33.33%' } },
+                { id: 'prompt', style: { top: '66.66%' } }
+            ]}
+            outputs={[{ id: 'response' }]}
+        >
+            {() => (
+                <span>This is a LLM.</span>
+            )}
+        </BaseNode>
+    );
+};
 
-export const LLMNode = ({ id, data }) => {
-
-  return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
-      <Handle
-        type="target"
-        position={Position.Left}
-        id={`${id}-system`}
-        style={{top: `${100/3}%`}}
-      />
-      <Handle
-        type="target"
-        position={Position.Left}
-        id={`${id}-prompt`}
-        style={{top: `${200/3}%`}}
-      />
-      <div>
-        <span>LLM</span>
-      </div>
-      <div>
-        <span>This is a LLM.</span>
-      </div>
-      <Handle
-        type="source"
-        position={Position.Right}
-        id={`${id}-response`}
-      />
-    </div>
-  );
-}
+LLMNode.propTypes = {
+    id: PropTypes.string.isRequired,
+    data: PropTypes.shape({
+        nodeType: PropTypes.string,
+        onChange: PropTypes.func
+    })
+};

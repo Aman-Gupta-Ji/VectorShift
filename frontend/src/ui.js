@@ -3,7 +3,7 @@ import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
-import { nodeTypes, NODE_TYPES } from './nodes/nodes';
+import { nodeTypes, NODE_TYPES } from './nodes';
 
 import 'reactflow/dist/style.css';
 

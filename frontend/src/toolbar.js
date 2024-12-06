@@ -1,6 +1,6 @@
 // toolbar.js
 import { DraggableNode } from './draggableNode';
-import { NODE_TYPES } from './nodes/nodes';
+import { NODE_TYPES } from './nodes';
 
 export const PipelineToolbar = () => {
     return (

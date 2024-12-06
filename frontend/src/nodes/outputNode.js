@@ -1,47 +1,53 @@
 // outputNode.js
+import { BaseNode } from './baseNode';
+import PropTypes from 'prop-types';
 
-import { useState } from 'react';
-import { Handle, Position } from 'reactflow';
+export const OutputNode = ({ id, data = {} }) => {
+    const initialState = {
+        name: data?.outputName || id.replace('customOutput-', 'output_'),
+        type: data?.outputType || 'Text'
+    };
 
-export const OutputNode = ({ id, data }) => {
-  const [currName, setCurrName] = useState(data?.outputName || id.replace('customOutput-', 'output_'));
-  const [outputType, setOutputType] = useState(data.outputType || 'Text');
+    return (
+        <BaseNode
+            id={id}
+            data={data}
+            label="Output"
+            initialState={initialState}
+            inputs={[{ id: 'value' }]}
+        >
+            {({ state, handleChange }) => (
+                <>
+                    <label>
+                        Name:
+                        <input 
+                            type="text" 
+                            value={state.name ?? ''} 
+                            onChange={handleChange('name')} 
+                        />
+                    </label>
+                    <label>
+                        Type:
+                        <select 
+                            value={state.type ?? 'Text'} 
+                            onChange={handleChange('type')}
+                        >
+                            <option value="Text">Text</option>
+                            <option value="File">Image</option>
+                        </select>
+                    </label>
+                </>
+            )}
+        </BaseNode>
+    );
+};
 
-  const handleNameChange = (e) => {
-    setCurrName(e.target.value);
-  };
-
-  const handleTypeChange = (e) => {
-    setOutputType(e.target.value);
-  };
-
-  return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
-      <Handle
-        type="target"
-        position={Position.Left}
-        id={`${id}-value`}
-      />
-      <div>
-        <span>Output</span>
-      </div>
-      <div>
-        <label>
-          Name:
-          <input 
-            type="text" 
-            value={currName} 
-            onChange={handleNameChange} 
-          />
-        </label>
-        <label>
-          Type:
-          <select value={outputType} onChange={handleTypeChange}>
-            <option value="Text">Text</option>
-            <option value="File">Image</option>
-          </select>
-        </label>
-      </div>
-    </div>
-  );
-}
+OutputNode.propTypes = {
+    id: PropTypes.string.isRequired,
+    data: PropTypes.shape({
+        outputName: PropTypes.string,
+        outputType: PropTypes.string,
+        nodeType: PropTypes.string,
+        onChange: PropTypes.func
+    })
+};
