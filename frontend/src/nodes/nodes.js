@@ -131,10 +131,25 @@ export const TextNode = ({ id, data }) => {
   );
 };
 
-// Update the nodeTypes object in ui.js:
-export const nodeTypes = {
-  customInput: InputNode,
-  llm: LLMNode,
-  customOutput: OutputNode,
-  text: TextNode,
+// Create and export nodeTypes mapping
+const createNodeTypes = () => {
+  const components = {
+    InputNode,
+    LLMNode,
+    OutputNode,
+    TextNode
+  };
+
+  return Object.entries(components).reduce((acc, [key, component]) => {
+    const type = key.replace('Node', '').toLowerCase();
+    const nodeType = type === 'input' || type === 'output' 
+      ? `custom${type}` 
+      : type;
+    return { ...acc, [nodeType]: component };
+  }, {});
 };
+
+export const nodeTypes = createNodeTypes();
+
+// Export a list of valid node types for validation
+export const validNodeTypes = Object.keys(nodeTypes);

@@ -3,21 +3,12 @@ import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
-// Import all nodes from single file
-import { InputNode, LLMNode, OutputNode, TextNode } from './nodes/nodes';
+import { nodeTypes, validNodeTypes } from './nodes/nodes';
 
 import 'reactflow/dist/style.css';
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
-
-// Node types are now imported from the centralized nodes file
-const nodeTypes = {
-  customInput: InputNode,
-  llm: LLMNode,
-  customOutput: OutputNode,
-  text: TextNode,
-};
 
 const selector = (state) => ({
   nodes: state.nodes,
@@ -33,7 +24,7 @@ export const PipelineUI = () => {
     const reactFlowWrapper = useRef(null);
     const [reactFlowInstance, setReactFlowInstance] = useState(null);
     const {
-      nodes,
+      nodes: flowNodes,
       edges,
       getNodeID,
       addNode,
@@ -43,28 +34,51 @@ export const PipelineUI = () => {
     } = useStore(selector, shallow);
 
     const getInitNodeData = (nodeID, type) => {
-      // You might want to add specific initial data based on node type
-      return { 
-        id: nodeID, 
+      const baseData = {
+        id: nodeID,
         nodeType: type,
         onChange: (key, value) => {
-          // Handle node data changes here if needed
           console.log(`Node ${nodeID} changed ${key} to ${value}`);
         }
       };
-    }
+
+      switch(type) {
+        case 'customInput':
+          return {
+            ...baseData,
+            inputName: `input_${nodeID}`,
+            inputType: 'Text'
+          };
+        case 'customOutput':
+          return {
+            ...baseData,
+            outputName: `output_${nodeID}`,
+            outputType: 'Text'
+          };
+        case 'text':
+          return {
+            ...baseData,
+            text: '{{input}}'
+          };
+        default:
+          return baseData;
+      }
+    };
 
     const onDrop = useCallback(
         (event) => {
           event.preventDefault();
     
           const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
-          if (event?.dataTransfer?.getData('application/reactflow')) {
-            const appData = JSON.parse(event.dataTransfer.getData('application/reactflow'));
-            const type = appData?.nodeType;
-      
-            // check if the dropped element is valid
-            if (typeof type === 'undefined' || !type) {
+          const appData = event?.dataTransfer?.getData('application/reactflow');
+          
+          if (!appData) return;
+
+          try {
+            const { nodeType } = JSON.parse(appData);
+            
+            if (!nodeType || !validNodeTypes.includes(nodeType)) {
+              console.warn(`Invalid node type: ${nodeType}`);
               return;
             }
       
@@ -73,15 +87,17 @@ export const PipelineUI = () => {
               y: event.clientY - reactFlowBounds.top,
             });
 
-            const nodeID = getNodeID(type);
+            const nodeID = getNodeID(nodeType);
             const newNode = {
               id: nodeID,
-              type,
+              type: nodeType,
               position,
-              data: getInitNodeData(nodeID, type),
+              data: getInitNodeData(nodeID, nodeType),
             };
       
             addNode(newNode);
+          } catch (error) {
+            console.error('Error adding node:', error);
           }
         },
         [reactFlowInstance, getNodeID, addNode]
@@ -96,7 +112,7 @@ export const PipelineUI = () => {
         <>
         <div ref={reactFlowWrapper} style={{width: '100wv', height: '70vh'}}>
             <ReactFlow
-                nodes={nodes}
+                nodes={flowNodes}
                 edges={edges}
                 onNodesChange={onNodesChange}
                 onEdgesChange={onEdgesChange}
@@ -108,6 +124,7 @@ export const PipelineUI = () => {
                 proOptions={proOptions}
                 snapGrid={[gridSize, gridSize]}
                 connectionLineType='smoothstep'
+                fitView
             >
                 <Background color="#aaa" gap={gridSize} />
                 <Controls />
