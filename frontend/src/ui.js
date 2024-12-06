@@ -1,20 +1,17 @@
 // ui.js
-// Displays the drag-and-drop UI
-// --------------------------------------------------
-
 import { useState, useRef, useCallback } from 'react';
 import ReactFlow, { Controls, Background, MiniMap } from 'reactflow';
 import { useStore } from './store';
 import { shallow } from 'zustand/shallow';
-import { InputNode } from './nodes/inputNode';
-import { LLMNode } from './nodes/llmNode';
-import { OutputNode } from './nodes/outputNode';
-import { TextNode } from './nodes/textNode';
+// Import all nodes from single file
+import { InputNode, LLMNode, OutputNode, TextNode } from './nodes/nodes';
 
 import 'reactflow/dist/style.css';
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
+
+// Node types are now imported from the centralized nodes file
 const nodeTypes = {
   customInput: InputNode,
   llm: LLMNode,
@@ -46,8 +43,15 @@ export const PipelineUI = () => {
     } = useStore(selector, shallow);
 
     const getInitNodeData = (nodeID, type) => {
-      let nodeData = { id: nodeID, nodeType: `${type}` };
-      return nodeData;
+      // You might want to add specific initial data based on node type
+      return { 
+        id: nodeID, 
+        nodeType: type,
+        onChange: (key, value) => {
+          // Handle node data changes here if needed
+          console.log(`Node ${nodeID} changed ${key} to ${value}`);
+        }
+      };
     }
 
     const onDrop = useCallback(
@@ -80,7 +84,7 @@ export const PipelineUI = () => {
             addNode(newNode);
           }
         },
-        [reactFlowInstance]
+        [reactFlowInstance, getNodeID, addNode]
     );
 
     const onDragOver = useCallback((event) => {
@@ -111,5 +115,5 @@ export const PipelineUI = () => {
             </ReactFlow>
         </div>
         </>
-    )
-}
+    );
+};
