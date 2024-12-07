@@ -48,53 +48,53 @@ export const styles = {
     // Base Node
     baseNode: {
         container: {
-            base: "rounded-xl min-w-[300px]",
+            base: "rounded-xl min-w-[300px] border border-white/10 relative",
             variants: {
-                input: "bg-purple-900/40 border border-purple-500/30",
-                output: "bg-purple-900/40 border border-purple-500/30",
-                llm: "bg-purple-900/40 border border-purple-500/30",
-                text: "bg-purple-900/40 border border-purple-500/30",
-                message: "bg-purple-900/40 border border-purple-500/30",
-                webScraper: "bg-purple-900/40 border border-purple-500/30",
-                imageProcessing: "bg-purple-900/40 border border-purple-500/30",
-                notification: "bg-purple-900/40 border border-purple-500/30",
-                dataTransform: "bg-purple-900/40 border border-purple-500/30",
-                default: "bg-purple-900/40 border border-purple-500/30"
+                input: "bg-purple-900/40",
+                output: "bg-purple-900/40",
+                llm: "bg-purple-900/40",
+                text: "bg-purple-900/40",
+                message: "bg-purple-900/40",
+                webScraper: "bg-purple-900/40",
+                imageProcessing: "bg-purple-900/40",
+                notification: "bg-purple-900/40",
+                dataTransform: "bg-purple-900/40",
+                default: "bg-purple-900/40"
             }
         },
         header: {
-            base: "px-4 py-2 border-b",
+            base: "px-4 py-2 border-b border-white/10 rounded-t-xl",
             variants: {
-                input: "border-purple-500/30",
-                output: "border-purple-500/30",
-                llm: "border-purple-500/30",
-                text: "border-purple-500/30",
-                message: "border-purple-500/30",
-                webScraper: "border-purple-500/30",
-                imageProcessing: "border-purple-500/30",
-                notification: "border-purple-500/30",
-                dataTransform: "border-purple-500/30",
-                default: "border-purple-500/30"
+                input: "",
+                output: "",
+                llm: "",
+                text: "",
+                message: "",
+                webScraper: "",
+                imageProcessing: "",
+                notification: "",
+                dataTransform: "",
+                default: ""
             }
         },
         label: {
-            base: "font-medium",
+            base: "text-yellow-500 font-medium",
             variants: {
-                input: "text-yellow-500",
-                output: "text-yellow-500",
-                llm: "text-yellow-500",
-                text: "text-yellow-500",
-                message: "text-yellow-500",
-                webScraper: "text-yellow-500",
-                imageProcessing: "text-yellow-500",
-                notification: "text-yellow-500",
-                dataTransform: "text-yellow-500",
-                default: "text-yellow-500"
+                input: "",
+                output: "",
+                llm: "",
+                text: "",
+                message: "",
+                webScraper: "",
+                imageProcessing: "",
+                notification: "",
+                dataTransform: "",
+                default: ""
             }
         },
         content: "p-4",
         handle: {
-            base: "w-3 h-3 rounded-full bg-white border-2 border-slate-400",
+            base: "w-3 h-3 rounded-full bg-white border-2 border-slate-400 hover:border-slate-300 transition-colors",
             variants: {
                 input: "",
                 output: "",
@@ -113,11 +113,25 @@ export const styles = {
     // Form Elements
     form: {
         label: "text-sm text-gray-300",
-        input: "w-full px-3 py-2 bg-black/20 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:border-gray-500",
-        select: "w-full px-3 py-2 bg-black/20 border border-gray-600 rounded-md text-white focus:outline-none focus:border-gray-500",
-        textarea: "w-full px-3 py-2 bg-black/20 border border-gray-600 rounded-md text-white font-mono text-sm resize-none focus:outline-none focus:border-gray-500 min-h-[80px]"
+        input: "w-full px-3 py-2 bg-black/20 border border-gray-600/40 rounded-md text-white placeholder-gray-400 focus:outline-none focus:border-gray-500",
+        select: "w-full px-3 py-2 bg-black/20 border border-gray-600/40 rounded-md text-white focus:outline-none focus:border-gray-500",
+        textarea: `
+            w-full px-3 py-2
+            bg-black/20 
+            border border-gray-600/40 
+            rounded-md 
+            text-white 
+            font-mono 
+            text-sm 
+            resize-none 
+            focus:outline-none 
+            focus:border-gray-500 
+            transition-all 
+            duration-200
+            min-h-[80px]
+        `
     },
-
+    
     // Pipeline UI
     pipelineUI: {
         container: "w-full h-[85vh] backdrop-blur-md bg-white/5 border border-white/10 shadow-2xl mx-0",
