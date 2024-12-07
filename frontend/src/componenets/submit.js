@@ -1,6 +1,6 @@
 // frontend/src/components/submit.js
 import { styles } from './../styling/styles';
-import { useStore } from './store';
+import { useStore } from '../store';
 import { useState } from 'react';
 
 export const SubmitButton = () => {
