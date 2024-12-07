@@ -1,9 +1,11 @@
 // src/styling/styles.js
 export const styles = {
+    // App Container
     app: {
         container: "min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900",
     },
 
+    // Toolbar
     toolbar: {
         container: "backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl mb-4 mx-4",
         wrapper: "p-4",
@@ -11,6 +13,7 @@ export const styles = {
         nodesContainer: "flex flex-wrap gap-3",
     },
 
+    // Draggable Node
     draggableNode: {
         base: "cursor-grab active:cursor-grabbing min-w-[160px] h-[50px] rounded-lg transition-all duration-300 backdrop-blur-sm shadow-lg hover:scale-105 hover:-translate-y-1 border-2",
         variants: {
@@ -42,77 +45,80 @@ export const styles = {
         }
     },
 
+    // Base Node
     baseNode: {
         container: {
-            base: "rounded-xl shadow-2xl transition-all duration-300 min-w-[280px] backdrop-blur-md hover:shadow-2xl hover:scale-[1.02]",
+            base: "rounded-xl min-w-[300px]",
             variants: {
-                input: "bg-gradient-to-br from-blue-500/10 to-blue-600/10 border border-blue-500/30",
-                output: "bg-gradient-to-br from-green-500/10 to-green-600/10 border border-green-500/30",
-                llm: "bg-gradient-to-br from-purple-500/10 to-purple-600/10 border border-purple-500/30",
-                text: "bg-gradient-to-br from-yellow-500/10 to-yellow-600/10 border border-yellow-500/30",
-                message: "bg-gradient-to-br from-pink-500/10 to-pink-600/10 border border-pink-500/30",
-                webScraper: "bg-gradient-to-br from-cyan-500/10 to-cyan-600/10 border border-cyan-500/30",
-                imageProcessing: "bg-gradient-to-br from-orange-500/10 to-orange-600/10 border border-orange-500/30",
-                notification: "bg-gradient-to-br from-red-500/10 to-red-600/10 border border-red-500/30",
-                dataTransform: "bg-gradient-to-br from-teal-500/10 to-teal-600/10 border border-teal-500/30",
-                default: "bg-gradient-to-br from-gray-500/10 to-gray-600/10 border border-gray-500/30"
+                input: "bg-purple-900/40 border border-purple-500/30",
+                output: "bg-purple-900/40 border border-purple-500/30",
+                llm: "bg-purple-900/40 border border-purple-500/30",
+                text: "bg-purple-900/40 border border-purple-500/30",
+                message: "bg-purple-900/40 border border-purple-500/30",
+                webScraper: "bg-purple-900/40 border border-purple-500/30",
+                imageProcessing: "bg-purple-900/40 border border-purple-500/30",
+                notification: "bg-purple-900/40 border border-purple-500/30",
+                dataTransform: "bg-purple-900/40 border border-purple-500/30",
+                default: "bg-purple-900/40 border border-purple-500/30"
             }
         },
         header: {
-            base: "flex items-center gap-2 p-4 border-b rounded-t-xl backdrop-blur-sm",
+            base: "px-4 py-2 border-b",
             variants: {
-                input: "bg-blue-900/20 border-blue-500/30",
-                output: "bg-green-900/20 border-green-500/30",
-                llm: "bg-purple-900/20 border-purple-500/30",
-                text: "bg-yellow-900/20 border-yellow-500/30",
-                message: "bg-pink-900/20 border-pink-500/30",
-                webScraper: "bg-cyan-900/20 border-cyan-500/30",
-                imageProcessing: "bg-orange-900/20 border-orange-500/30",
-                notification: "bg-red-900/20 border-red-500/30",
-                dataTransform: "bg-teal-900/20 border-teal-500/30",
-                default: "bg-gray-900/20 border-gray-500/30"
+                input: "border-purple-500/30",
+                output: "border-purple-500/30",
+                llm: "border-purple-500/30",
+                text: "border-purple-500/30",
+                message: "border-purple-500/30",
+                webScraper: "border-purple-500/30",
+                imageProcessing: "border-purple-500/30",
+                notification: "border-purple-500/30",
+                dataTransform: "border-purple-500/30",
+                default: "border-purple-500/30"
             }
         },
         label: {
-            base: "font-bold text-lg tracking-tight",
+            base: "font-medium",
             variants: {
-                input: "text-blue-200",
-                output: "text-green-200",
-                llm: "text-purple-200",
-                text: "text-yellow-200",
-                message: "text-pink-200",
-                webScraper: "text-cyan-200",
-                imageProcessing: "text-orange-200",
-                notification: "text-red-200",
-                dataTransform: "text-teal-200",
-                default: "text-gray-200"
+                input: "text-yellow-500",
+                output: "text-yellow-500",
+                llm: "text-yellow-500",
+                text: "text-yellow-500",
+                message: "text-yellow-500",
+                webScraper: "text-yellow-500",
+                imageProcessing: "text-yellow-500",
+                notification: "text-yellow-500",
+                dataTransform: "text-yellow-500",
+                default: "text-yellow-500"
             }
         },
         content: "p-4",
         handle: {
-            base: "w-6 h-6 rounded-full border-3 transition-all duration-300 hover:scale-125 cursor-crosshair",
+            base: "w-3 h-3 rounded-full bg-white border-2 border-slate-400",
             variants: {
-                input: "bg-gradient-to-r from-blue-400 to-blue-500 border-blue-400 shadow-xl shadow-blue-500/50 hover:shadow-blue-500/75",
-                output: "bg-gradient-to-r from-green-400 to-green-500 border-green-400 shadow-xl shadow-green-500/50 hover:shadow-green-500/75",
-                llm: "bg-gradient-to-r from-purple-400 to-purple-500 border-purple-400 shadow-xl shadow-purple-500/50 hover:shadow-purple-500/75",
-                text: "bg-gradient-to-r from-yellow-400 to-yellow-500 border-yellow-400 shadow-xl shadow-yellow-500/50 hover:shadow-yellow-500/75",
-                message: "bg-gradient-to-r from-pink-400 to-pink-500 border-pink-400 shadow-xl shadow-pink-500/50 hover:shadow-pink-500/75",
-                webScraper: "bg-gradient-to-r from-cyan-400 to-cyan-500 border-cyan-400 shadow-xl shadow-cyan-500/50 hover:shadow-cyan-500/75",
-                imageProcessing: "bg-gradient-to-r from-orange-400 to-orange-500 border-orange-400 shadow-xl shadow-orange-500/50 hover:shadow-orange-500/75",
-                notification: "bg-gradient-to-r from-red-400 to-red-500 border-red-400 shadow-xl shadow-red-500/50 hover:shadow-red-500/75",
-                dataTransform: "bg-gradient-to-r from-teal-400 to-teal-500 border-teal-400 shadow-xl shadow-teal-500/50 hover:shadow-teal-500/75",
-                default: "bg-gradient-to-r from-gray-400 to-gray-500 border-gray-400 shadow-xl shadow-gray-500/50 hover:shadow-gray-500/75"
+                input: "",
+                output: "",
+                llm: "",
+                text: "",
+                message: "",
+                webScraper: "",
+                imageProcessing: "",
+                notification: "",
+                dataTransform: "",
+                default: ""
             }
         }
     },
 
+    // Form Elements
     form: {
-        label: "block text-sm font-medium text-gray-200 mb-1",
-        input: "w-full px-4 py-2 rounded-lg border bg-white/5 border-white/10 focus:border-white/20 focus:outline-none focus:ring-2 focus:ring-white/10 backdrop-blur-sm text-white placeholder-gray-400 transition-all duration-300",
-        select: "w-full px-4 py-2 rounded-lg border bg-white/5 border-white/10 focus:border-white/20 focus:outline-none focus:ring-2 focus:ring-white/10 backdrop-blur-sm text-white transition-all duration-300",
-        textarea: "w-full px-4 py-2 rounded-lg border bg-white/5 border-white/10 focus:border-white/20 focus:outline-none focus:ring-2 focus:ring-white/10 backdrop-blur-sm text-white placeholder-gray-400 transition-all duration-300 resize-none"
+        label: "text-sm text-gray-300",
+        input: "w-full px-3 py-2 bg-black/20 border border-gray-600 rounded-md text-white placeholder-gray-400 focus:outline-none focus:border-gray-500",
+        select: "w-full px-3 py-2 bg-black/20 border border-gray-600 rounded-md text-white focus:outline-none focus:border-gray-500",
+        textarea: "w-full px-3 py-2 bg-black/20 border border-gray-600 rounded-md text-white font-mono text-sm resize-none focus:outline-none focus:border-gray-500 min-h-[80px]"
     },
 
+    // Pipeline UI
     pipelineUI: {
         container: "w-full h-[85vh] backdrop-blur-md bg-white/5 border border-white/10 shadow-2xl mx-0",
         reactFlow: "rounded-xl",
@@ -121,6 +127,7 @@ export const styles = {
         background: "stroke-white/10"
     },
 
+    // Submit Button
     submit: {
         container: "flex justify-center p-4 mx-4",
         button: "px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-medium hover:from-purple-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300 shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/50 hover:-translate-y-0.5"
