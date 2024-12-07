@@ -1,36 +1,32 @@
 // src/styling/styles.js
 export const styles = {
-    // App Container
     app: {
         container: "min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900",
-        wrapper: "container mx-auto py-6 px-4",
     },
 
-    // Toolbar
     toolbar: {
-        container: "backdrop-blur-md bg-white/10 border border-white/20 rounded-xl shadow-2xl mb-6",
-        wrapper: "p-6",
-        title: "text-2xl font-bold text-white mb-6 tracking-tight",
-        nodesContainer: "flex flex-wrap gap-4",
+        container: "backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl mb-4 mx-4",
+        wrapper: "p-4",
+        title: "text-xl font-bold text-white mb-4 tracking-tight",
+        nodesContainer: "flex flex-wrap gap-3",
     },
 
-    // Draggable Node
     draggableNode: {
-        base: "cursor-grab active:cursor-grabbing min-w-[140px] rounded-lg transition-all duration-300 backdrop-blur-sm shadow-lg hover:scale-105 hover:-translate-y-1",
+        base: "cursor-grab active:cursor-grabbing min-w-[160px] h-[50px] rounded-lg transition-all duration-300 backdrop-blur-sm shadow-lg hover:scale-105 hover:-translate-y-1 border-2",
         variants: {
-            input: "bg-gradient-to-r from-blue-500/20 to-blue-600/20 border border-blue-500/30 hover:border-blue-400",
-            output: "bg-gradient-to-r from-green-500/20 to-green-600/20 border border-green-500/30 hover:border-green-400",
-            llm: "bg-gradient-to-r from-purple-500/20 to-purple-600/20 border border-purple-500/30 hover:border-purple-400",
-            text: "bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 border border-yellow-500/30 hover:border-yellow-400",
-            message: "bg-gradient-to-r from-pink-500/20 to-pink-600/20 border border-pink-500/30 hover:border-pink-400",
-            webScraper: "bg-gradient-to-r from-cyan-500/20 to-cyan-600/20 border border-cyan-500/30 hover:border-cyan-400",
-            imageProcessing: "bg-gradient-to-r from-orange-500/20 to-orange-600/20 border border-orange-500/30 hover:border-orange-400",
-            notification: "bg-gradient-to-r from-red-500/20 to-red-600/20 border border-red-500/30 hover:border-red-400",
-            dataTransform: "bg-gradient-to-r from-teal-500/20 to-teal-600/20 border border-teal-500/30 hover:border-teal-400",
-            default: "bg-gradient-to-r from-gray-500/20 to-gray-600/20 border border-gray-500/30 hover:border-gray-400"
+            input: "bg-gradient-to-r from-blue-500/30 to-blue-600/30 border-blue-400/50 hover:border-blue-400",
+            output: "bg-gradient-to-r from-green-500/30 to-green-600/30 border-green-400/50 hover:border-green-400",
+            llm: "bg-gradient-to-r from-purple-500/30 to-purple-600/30 border-purple-400/50 hover:border-purple-400",
+            text: "bg-gradient-to-r from-yellow-500/30 to-yellow-600/30 border-yellow-400/50 hover:border-yellow-400",
+            message: "bg-gradient-to-r from-pink-500/30 to-pink-600/30 border-pink-400/50 hover:border-pink-400",
+            webScraper: "bg-gradient-to-r from-cyan-500/30 to-cyan-600/30 border-cyan-400/50 hover:border-cyan-400",
+            imageProcessing: "bg-gradient-to-r from-orange-500/30 to-orange-600/30 border-orange-400/50 hover:border-orange-400",
+            notification: "bg-gradient-to-r from-red-500/30 to-red-600/30 border-red-400/50 hover:border-red-400",
+            dataTransform: "bg-gradient-to-r from-teal-500/30 to-teal-600/30 border-teal-400/50 hover:border-teal-400",
+            default: "bg-gradient-to-r from-gray-500/30 to-gray-600/30 border-gray-400/50 hover:border-gray-400"
         },
         label: {
-            base: "px-4 py-3 text-sm font-medium flex items-center justify-center",
+            base: "px-4 py-3 text-base font-medium flex items-center justify-center",
             variants: {
                 input: "text-blue-200",
                 output: "text-green-200",
@@ -46,7 +42,6 @@ export const styles = {
         }
     },
 
-    // Base Node
     baseNode: {
         container: {
             base: "rounded-xl shadow-2xl transition-all duration-300 min-w-[280px] backdrop-blur-md hover:shadow-2xl hover:scale-[1.02]",
@@ -95,23 +90,22 @@ export const styles = {
         },
         content: "p-4",
         handle: {
-            base: "w-3 h-3 rounded-full border-2 transition-all duration-300 hover:scale-125",
+            base: "w-6 h-6 rounded-full border-3 transition-all duration-300 hover:scale-125 cursor-crosshair",
             variants: {
-                input: "bg-gradient-to-r from-blue-400 to-blue-500 border-blue-400 shadow-lg shadow-blue-500/50",
-                output: "bg-gradient-to-r from-green-400 to-green-500 border-green-400 shadow-lg shadow-green-500/50",
-                llm: "bg-gradient-to-r from-purple-400 to-purple-500 border-purple-400 shadow-lg shadow-purple-500/50",
-                text: "bg-gradient-to-r from-yellow-400 to-yellow-500 border-yellow-400 shadow-lg shadow-yellow-500/50",
-                message: "bg-gradient-to-r from-pink-400 to-pink-500 border-pink-400 shadow-lg shadow-pink-500/50",
-                webScraper: "bg-gradient-to-r from-cyan-400 to-cyan-500 border-cyan-400 shadow-lg shadow-cyan-500/50",
-                imageProcessing: "bg-gradient-to-r from-orange-400 to-orange-500 border-orange-400 shadow-lg shadow-orange-500/50",
-                notification: "bg-gradient-to-r from-red-400 to-red-500 border-red-400 shadow-lg shadow-red-500/50",
-                dataTransform: "bg-gradient-to-r from-teal-400 to-teal-500 border-teal-400 shadow-lg shadow-teal-500/50",
-                default: "bg-gradient-to-r from-gray-400 to-gray-500 border-gray-400 shadow-lg shadow-gray-500/50"
+                input: "bg-gradient-to-r from-blue-400 to-blue-500 border-blue-400 shadow-xl shadow-blue-500/50 hover:shadow-blue-500/75",
+                output: "bg-gradient-to-r from-green-400 to-green-500 border-green-400 shadow-xl shadow-green-500/50 hover:shadow-green-500/75",
+                llm: "bg-gradient-to-r from-purple-400 to-purple-500 border-purple-400 shadow-xl shadow-purple-500/50 hover:shadow-purple-500/75",
+                text: "bg-gradient-to-r from-yellow-400 to-yellow-500 border-yellow-400 shadow-xl shadow-yellow-500/50 hover:shadow-yellow-500/75",
+                message: "bg-gradient-to-r from-pink-400 to-pink-500 border-pink-400 shadow-xl shadow-pink-500/50 hover:shadow-pink-500/75",
+                webScraper: "bg-gradient-to-r from-cyan-400 to-cyan-500 border-cyan-400 shadow-xl shadow-cyan-500/50 hover:shadow-cyan-500/75",
+                imageProcessing: "bg-gradient-to-r from-orange-400 to-orange-500 border-orange-400 shadow-xl shadow-orange-500/50 hover:shadow-orange-500/75",
+                notification: "bg-gradient-to-r from-red-400 to-red-500 border-red-400 shadow-xl shadow-red-500/50 hover:shadow-red-500/75",
+                dataTransform: "bg-gradient-to-r from-teal-400 to-teal-500 border-teal-400 shadow-xl shadow-teal-500/50 hover:shadow-teal-500/75",
+                default: "bg-gradient-to-r from-gray-400 to-gray-500 border-gray-400 shadow-xl shadow-gray-500/50 hover:shadow-gray-500/75"
             }
         }
     },
 
-    // Form Elements
     form: {
         label: "block text-sm font-medium text-gray-200 mb-1",
         input: "w-full px-4 py-2 rounded-lg border bg-white/5 border-white/10 focus:border-white/20 focus:outline-none focus:ring-2 focus:ring-white/10 backdrop-blur-sm text-white placeholder-gray-400 transition-all duration-300",
@@ -119,18 +113,16 @@ export const styles = {
         textarea: "w-full px-4 py-2 rounded-lg border bg-white/5 border-white/10 focus:border-white/20 focus:outline-none focus:ring-2 focus:ring-white/10 backdrop-blur-sm text-white placeholder-gray-400 transition-all duration-300 resize-none"
     },
 
-    // Pipeline UI
     pipelineUI: {
-        container: "w-full h-[70vh] rounded-xl backdrop-blur-md bg-white/5 border border-white/10 shadow-2xl",
+        container: "w-full h-[85vh] backdrop-blur-md bg-white/5 border border-white/10 shadow-2xl mx-0",
         reactFlow: "rounded-xl",
         controls: "bg-white/10 border border-white/20 backdrop-blur-md rounded-lg shadow-lg",
         minimap: "bg-white/10 border border-white/20 backdrop-blur-md rounded-lg shadow-lg",
         background: "stroke-white/10"
     },
 
-    // Submit Button
     submit: {
-        container: "flex justify-center p-6",
+        container: "flex justify-center p-4 mx-4",
         button: "px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-medium hover:from-purple-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300 shadow-lg shadow-purple-500/50 hover:shadow-xl hover:shadow-purple-500/50 hover:-translate-y-0.5"
     }
 };

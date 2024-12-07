@@ -6,11 +6,9 @@ import { styles } from './styling/styles';
 function App() {
   return (
     <div className={styles.app.container}>
-      <div className={styles.app.wrapper}>
-        <PipelineToolbar />
-        <PipelineUI />
-        <SubmitButton />
-      </div>
+      <PipelineToolbar />
+      <PipelineUI />
+      <SubmitButton />
     </div>
   );
 }

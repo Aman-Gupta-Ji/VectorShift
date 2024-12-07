@@ -115,11 +115,7 @@ export const PipelineUI = () => {
     return (
         <div 
             ref={reactFlowWrapper} 
-            style={{
-                width: '100%', 
-                height: '70vh',
-                backgroundColor: '#f8f9fa'
-            }}
+            className={styles.pipelineUI.container}
         >
             <ReactFlow
                 nodes={flowNodes}
@@ -132,13 +128,25 @@ export const PipelineUI = () => {
                 onInit={setReactFlowInstance}
                 nodeTypes={nodeTypes}
                 proOptions={proOptions}
-                snapGrid={[gridSize, gridSize]}
-                connectionLineType='smoothstep'
+                defaultEdgeOptions={{
+                    style: { strokeWidth: 4 },
+                    type: 'smoothstep',
+                    animated: true
+                }}
+                connectionRadius={50}
+                snapToGrid={true}
+                snapGrid={[15, 15]}
+                connectionMode="loose"
+                className={styles.pipelineUI.reactFlow}
                 fitView
             >
-                <Background color="#aaa" gap={gridSize} />
-                <Controls />
-                <MiniMap />
+                <Background 
+                    gap={20}
+                    color="rgba(255, 255, 255, 0.1)"
+                    className={styles.pipelineUI.background}
+                />
+                <Controls className={styles.pipelineUI.controls} />
+                <MiniMap className={styles.pipelineUI.minimap} />
             </ReactFlow>
         </div>
     );
