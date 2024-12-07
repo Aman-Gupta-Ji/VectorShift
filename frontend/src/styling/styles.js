@@ -1,32 +1,46 @@
 // src/styling/styles.js
 export const styles = {
+    // App Container
     app: {
         container: "min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900",
     },
 
+    // Toolbar
     toolbar: {
-        container: "backdrop-blur-md bg-white/10 border border-white/20 shadow-2xl mb-4 mx-4",
-        wrapper: "p-4",
-        title: "text-xl font-bold text-white mb-4 tracking-tight",
-        nodesContainer: "flex flex-wrap gap-3",
+        container: "backdrop-blur-md bg-purple-900/20 border border-purple-500/30 rounded-xl shadow-2xl mb-4 mx-4",
+        wrapper: "p-6",
+        title: "text-2xl font-bold text-yellow-500 mb-6 tracking-tight",
+        nodesContainer: "flex flex-wrap gap-4",
     },
 
+    // Draggable Node
     draggableNode: {
-        base: "cursor-grab active:cursor-grabbing min-w-[160px] h-[50px] rounded-lg transition-all duration-300 backdrop-blur-sm shadow-lg hover:scale-105 hover:-translate-y-1 border-2",
+        base: `
+            cursor-grab active:cursor-grabbing 
+            min-w-[180px] h-[60px] 
+            rounded-lg 
+            transition-all duration-300 
+            backdrop-blur-sm 
+            shadow-lg 
+            hover:scale-105 
+            hover:-translate-y-1 
+            border border-purple-500/30
+            bg-purple-900/40
+        `,
         variants: {
-            input: "bg-gradient-to-r from-blue-500/30 to-blue-600/30 border-blue-400/50 hover:border-blue-400",
-            output: "bg-green-500/30 border-green-400/50 hover:border-green-400",
-            llm: "bg-purple-500/30 border-purple-400/50 hover:border-purple-400",
-            text: "bg-yellow-500/30 border-yellow-400/50 hover:border-yellow-400",
-            message: "bg-pink-500/30 border-pink-400/50 hover:border-pink-400",
-            webScraper: "bg-cyan-500/30 border-cyan-400/50 hover:border-cyan-400",
-            imageProcessing: "bg-orange-500/30 border-orange-400/50 hover:border-orange-400",
-            notification: "bg-red-500/30 border-red-400/50 hover:border-red-400",
-            dataTransform: "bg-teal-500/30 border-teal-400/50 hover:border-teal-400",
-            default: "bg-gray-500/30 border-gray-400/50 hover:border-gray-400"
+            input: "hover:border-blue-400 hover:bg-blue-600/20",
+            output: "hover:border-green-400 hover:bg-green-600/20",
+            llm: "hover:border-purple-400 hover:bg-purple-600/20",
+            text: "hover:border-yellow-400 hover:bg-yellow-600/20",
+            message: "hover:border-pink-400 hover:bg-pink-600/20",
+            webScraper: "hover:border-cyan-400 hover:bg-cyan-600/20",
+            imageProcessing: "hover:border-orange-400 hover:bg-orange-600/20",
+            notification: "hover:border-red-400 hover:bg-red-600/20",
+            dataTransform: "hover:border-teal-400 hover:bg-teal-600/20",
+            default: "hover:border-gray-400 hover:bg-gray-600/20"
         },
         label: {
-            base: "px-4 py-3 text-base font-medium flex items-center justify-center",
+            base: "px-4 py-3 text-lg font-medium flex items-center justify-center",
             variants: {
                 input: "text-blue-200",
                 output: "text-green-200",
@@ -42,9 +56,10 @@ export const styles = {
         }
     },
 
+    // Base Node
     baseNode: {
         container: {
-            base: "rounded-xl min-w-[300px] relative",
+            base: "rounded-xl min-w-[300px] relative border border-purple-500/30",
             variants: {
                 input: "bg-purple-900/40",
                 output: "bg-purple-900/40",
@@ -59,7 +74,7 @@ export const styles = {
             }
         },
         header: {
-            base: "px-4 py-2 border-b border-white/10",
+            base: "px-4 py-2 border-b border-purple-500/30",
             variants: {
                 input: "",
                 output: "",
@@ -106,6 +121,7 @@ export const styles = {
         }
     },
 
+    // Form Elements
     form: {
         label: "text-sm text-gray-300",
         input: "w-full px-3 py-2 bg-black/20 border border-gray-600/40 rounded-md text-white placeholder-gray-400 focus:outline-none focus:border-gray-500",
@@ -113,6 +129,7 @@ export const styles = {
         textarea: "w-full px-3 py-2 bg-black/20 border border-gray-600/40 rounded-md text-white font-mono text-sm resize-none focus:outline-none focus:border-gray-500 min-h-[80px]"
     },
 
+    // Pipeline UI
     pipelineUI: {
         container: "w-full h-[85vh] backdrop-blur-md bg-white/5 border border-white/10 shadow-2xl mx-0",
         reactFlow: "rounded-xl",
@@ -121,12 +138,14 @@ export const styles = {
         background: "stroke-white/10"
     },
 
+    // Submit Button
     submit: {
         container: "flex justify-center p-4 mx-4",
         button: "px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-medium hover:from-purple-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 transition-all duration-300 shadow-lg hover:shadow-xl"
     }
 };
 
+// Helper function to get variant styles
 export const getVariantStyles = (styles, component, variant = 'default') => {
     if (!styles || !styles[component]) {
         console.warn(`Missing styles for component: ${component}`);
