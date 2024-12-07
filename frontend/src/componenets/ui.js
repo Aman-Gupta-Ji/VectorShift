@@ -6,6 +6,7 @@ import { shallow } from 'zustand/shallow';
 import { nodeTypes, NODE_TYPES } from './nodes';
 
 import 'reactflow/dist/style.css';
+import { styles } from './../styling/styles';
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
