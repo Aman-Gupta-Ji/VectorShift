@@ -15,18 +15,7 @@ export const styles = {
 
     // Draggable Node
     draggableNode: {
-        base: `
-            cursor-grab active:cursor-grabbing 
-            min-w-[180px] h-[60px] 
-            rounded-lg 
-            transition-all duration-300 
-            backdrop-blur-sm 
-            shadow-lg 
-            hover:scale-105 
-            hover:-translate-y-1 
-            border border-purple-500/30
-            bg-purple-900/40
-        `,
+        base: "cursor-grab active:cursor-grabbing min-w-[180px] h-[60px] rounded-lg transition-all duration-300 backdrop-blur-sm shadow-lg hover:scale-105 hover:-translate-y-1 border border-purple-500/30 bg-purple-900/40",
         variants: {
             input: "hover:border-blue-400 hover:bg-blue-600/20",
             output: "hover:border-green-400 hover:bg-green-600/20",

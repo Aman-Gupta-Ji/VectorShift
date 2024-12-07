@@ -4,7 +4,6 @@ import { useStore } from './store';
 import { useState } from 'react';
 
 export const SubmitButton = () => {
-  // Get nodes and edges from the store
   const nodes = useStore((state) => state.nodes);
   const edges = useStore((state) => state.edges);
   const [showAlert, setShowAlert] = useState(false);

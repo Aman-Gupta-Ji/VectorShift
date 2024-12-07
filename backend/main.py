@@ -17,7 +17,6 @@ app.add_middleware(
 )
 
 def check_is_dag(nodes, edges):
-    """Check if the graph is a DAG using DFS to detect cycles"""
     graph = defaultdict(list)
     for edge in edges:
         graph[edge['source']].append(edge['target'])
