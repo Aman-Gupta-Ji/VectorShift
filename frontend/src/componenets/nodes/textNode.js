@@ -1,3 +1,4 @@
+// textNode.js
 import { useCallback, useEffect, useState } from 'react';
 import { BaseNode } from './baseNode';
 import { styles } from '../../styling/styles';
@@ -22,11 +23,10 @@ export const TextNode = ({ id, data = {} }) => {
         setDynamicInputs(variables);
     }, [data?.text, initialState.text, extractVariables]);
 
-    // Calculate dynamic width based on content
     const calculateWidth = (text) => {
         const lines = text.split('\n');
         const maxLineLength = Math.max(...lines.map(line => line.length));
-        return Math.max(300, Math.min(600, maxLineLength * 8)); // 8px per character, min 300px, max 600px
+        return Math.max(300, Math.min(600, maxLineLength * 8));
     };
 
     return (
