@@ -61,7 +61,7 @@ export const useStore = create((set, get) => ({
             return;
         }
 
-        // Add the edge
+        // Add the edge with proper handle targeting
         set({
             edges: addEdge({
                 ...connection,
@@ -71,7 +71,7 @@ export const useStore = create((set, get) => ({
                     type: MarkerType.Arrow,
                     height: 20,
                     width: 20
-                }
+                },
             }, edges),
         });
     },

@@ -29,8 +29,8 @@ export const BaseNode = ({
     const getHandlePosition = (index, total) => {
         if (total === 1) return 50;
         if (total === 2) return index === 0 ? 33 : 66;
-        const segment = 100 / (total + 1);
-        return (index + 1) * segment;
+        const spacing = 100 / (total + 1);
+        return (index + 1) * spacing;
     };
 
     return (
@@ -41,6 +41,7 @@ export const BaseNode = ({
                 </span>
             </div>
 
+            {/* Input Handles */}
             {inputs.map((input, index) => (
                 <Handle
                     key={`input-${input.id}`}
@@ -49,7 +50,7 @@ export const BaseNode = ({
                     id={`${id}-${input.id}`}
                     className={getVariantStyles(styles.baseNode, 'handle', type)}
                     style={{
-                        top: `${getHandlePosition(index, inputs.length)}%`,
+                        top: input.style?.top || `${getHandlePosition(index, inputs.length)}%`,
                         left: '-4px',
                         transform: 'translateX(-50%)',
                         cursor: 'pointer'
@@ -61,6 +62,7 @@ export const BaseNode = ({
                 {children && children({ state, handleChange })}
             </div>
 
+            {/* Output Handles */}
             {outputs.map((output, index) => (
                 <Handle
                     key={`output-${output.id}`}
@@ -69,7 +71,7 @@ export const BaseNode = ({
                     id={`${id}-${output.id}`}
                     className={getVariantStyles(styles.baseNode, 'handle', type)}
                     style={{
-                        top: `${getHandlePosition(index, outputs.length)}%`,
+                        top: output.style?.top || `${getHandlePosition(index, outputs.length)}%`,
                         right: '-4px',
                         transform: 'translateX(50%)',
                         cursor: 'pointer'

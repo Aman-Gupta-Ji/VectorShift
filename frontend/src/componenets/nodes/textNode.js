@@ -12,10 +12,11 @@ export const TextNode = ({ id, data = {} }) => {
     const extractVariables = useCallback((text) => {
         const regex = /{{([^}]+)}}/g;
         const matches = [...text.matchAll(regex)];
-        return matches.map((match, index) => ({
-            id: `${match[1].trim()}-${index}`,
-            label: match[1].trim()
-        })).filter(item => item.label);
+        return [...new Set(matches.map(match => match[1].trim()))]
+            .map((variable, index) => ({
+                id: variable,
+                label: variable
+            }));
     }, []);
 
     useEffect(() => {
@@ -59,7 +60,7 @@ export const TextNode = ({ id, data = {} }) => {
                     </div>
                     {dynamicInputs.length > 0 && (
                         <div className="text-xs text-purple-300/60">
-                            Variables: {[...new Set(dynamicInputs.map(input => input.label))].join(', ')}
+                            Variables: {dynamicInputs.map(input => input.label).join(', ')}
                         </div>
                     )}
                 </div>
