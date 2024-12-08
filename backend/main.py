@@ -2,12 +2,12 @@
 from fastapi import FastAPI, Form
 from fastapi.middleware.cors import CORSMiddleware
 import json
-from collections import defaultdict
+from collections import defaultdict, deque
 import uvicorn
 
 app = FastAPI()
 
-# Add CORS middleware with specific origin
+# Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
@@ -17,33 +17,45 @@ app.add_middleware(
 )
 
 def check_is_dag(nodes, edges):
+    """
+    Check if graph is DAG using Kahn's algorithm.
+    If we can perform topological sort, it's a DAG.
+    If not all nodes are included in the sort, there's a cycle.
+    """
+    # Build adjacency list and in-degree count
     graph = defaultdict(list)
+    in_degree = defaultdict(int)
+    
+    # Initialize all nodes with 0 in-degree
+    for node in nodes:
+        in_degree[node['id']] = 0
+    
+    # Build the graph and count in-degrees
     for edge in edges:
-        graph[edge['source']].append(edge['target'])
+        source = edge['source']
+        target = edge['target']
+        graph[source].append(target)
+        in_degree[target] += 1
     
-    visited = set()
-    recursion_stack = set()
+    # Queue nodes with 0 in-degree
+    queue = deque([node_id for node_id in in_degree if in_degree[node_id] == 0])
     
-    def has_cycle(node):
-        visited.add(node)
-        recursion_stack.add(node)
+    # Count nodes processed in topological sort
+    nodes_processed = 0
+    
+    # Process the queue
+    while queue:
+        current = queue.popleft()
+        nodes_processed += 1
         
-        for neighbor in graph[node]:
-            if neighbor not in visited:
-                if has_cycle(neighbor):
-                    return True
-            elif neighbor in recursion_stack:
-                return True
-                
-        recursion_stack.remove(node)
-        return False
+        # Reduce in-degree of neighbors
+        for neighbor in graph[current]:
+            in_degree[neighbor] -= 1
+            if in_degree[neighbor] == 0:
+                queue.append(neighbor)
     
-    for node in [node['id'] for node in nodes]:
-        if node not in visited:
-            if has_cycle(node):
-                return False
-    
-    return True
+    # If we processed all nodes, it's a DAG
+    return nodes_processed == len(nodes)
 
 @app.get('/')
 def read_root():
@@ -68,6 +80,5 @@ async def parse_pipeline(pipeline: str = Form(...)):
     except Exception as e:
         return {'error': str(e)}, 400
 
-# Add this at the bottom of the file
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
