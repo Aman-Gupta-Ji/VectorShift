@@ -1,5 +1,0 @@
-MessageNode (multi-platform messaging)
-WebScraperNode (web content extraction)
-ImageProcessingNode (basic image operations)
-NotificationNode (system notifications with different templates/priorities)
-DataTransformNode (convert between formats JSON/XML/CSV)
